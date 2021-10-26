@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<html>
+<title>VR Tools</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<!-- <link rel="stylesheet" href="css/menu.css"> -->
+<link rel="shortcut icon" href="img/favicon.ico">
+<script src="components/navbar.js"></script>
+<script src="js/translation.js"></script>
+
+<style>
+    .project-title {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+</style>
+
+<body>
+    <!-- Navbar (sit on top) -->
+    <navbar-component></navbar-component>
+
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+        <img class="w3-image" src="img/vr.png" alt="Architecture" width="1500" height="800">
+        <div class="w3-display-middle w3-margin-top w3-center">
+            <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>VR</b></span>
+                <span class="w3-hide-small w3-text-grey">Tools</span>
+            </h1>
+        </div>
+    </header>
+
+    <!-- Page content -->
+    <div class="w3-content w3-padding" style="max-width:1564px">
+
+        <!-- Project Section -->
+        <div class="w3-container w3-padding-32" id="projects">
+            <h3 id="projects-header" class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+        </div>
+
+        <div class="w3-row-padding">
+            <div class="w3-col l3 m6 w3-margin-bottom ">
+                <a href="javascript: TRANSLATION.redirect('projects/platonic-solids.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="platonic-solids" class="project-title w3-display-topleft w3-padding">Platonic Solids
+                        </div>
+                        <img src="img/projects-main-images/platonic-solids.jpeg" alt="Platonic Solids logo"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/solar-system.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="solar-system" class="project-title w3-display-topleft w3-padding">Solar System</div>
+                        <img src="img/projects-main-images/solar-system.png" alt="Solar System logo"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/architecture.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="architecture" class="project-title w3-display-topleft w3-padding">Architecture</div>
+                        <img src="img/projects-main-images/architecture.jpg" alt="House" style="width:100%;">
+                    </div>
+                </a>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/projectile-motion.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="projectile-motion" class="project-title w3-display-topleft w3-padding">Projectile
+                            Motion</div>
+                        <img src="img/projects-main-images/projectile-motion.jpg" alt="aiplane droping crate"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/inclined-plane.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="inclined-plane" class="project-title w3-display-topleft w3-padding">Inclined Plane
+                        </div>
+                        <img src="img/projects-main-images/inclined-plane.png" alt="box sliding on a inclined plane"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="projects/vascular-diseases.html">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="vascular-diseases" class="project-title w3-display-topleft w3-padding">Vascular
+                            Diseases</div>
+                        <img src="img/projects-main-images/vascular-diseases.png" alt="example of stroke"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/virtual-travel.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="virtual-travel" class="project-title w3-display-topleft w3-padding">Virtual Travel
+                        </div>
+                        <img src="img/projects-main-images/virtual-travel.png" alt="example of place"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/historical-figures.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="historical-figures" class="project-title w3-display-topleft w3-padding">Historical
+                            Figures</div>
+                        <img src="img/projects-main-images/historical-figures.png"
+                            alt="example of important historical figures" style="width:100%;">
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/circuits.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="circuits" class="project-title w3-display-topleft w3-padding">Eletric
+                            Circuits</div>
+                        <img src="img/projects-main-images/circuits.png" alt="initial view of the application"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('projects/mars.html')">
+                    <div class="w3-display-container" style="border:2px solid black">
+                        <div id="mars" class="project-title w3-display-topleft w3-padding">Mars</div>
+                        <img src="img/projects-main-images/mars.jpg" alt="initial view of the application"
+                            style="width:100%;">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- External Apps Section -->
+        <div class="w3-container w3-padding-32" id="vr-apps">
+            <h3 id="external-apps-header" class="w3-border-bottom w3-border-light-grey w3-padding-16">External Apps</h3>
+        </div>
+
+        <div class="w3-row-padding">
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('external-apps/gartsculture.html')">
+                    <div class="w3-display-container">
+                        <div class="project-title w3-display-topleft w3-padding">Google Arts & Culture</div>
+                        <img src="img/gartsculture/gartculture.jpg" alt="Google Arts and Culture logo"
+                            style="width:100%">
+                    </div>
+                </a>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('external-apps/gexpeditions.html')">
+                    <div class="w3-display-container">
+                        <div class="project-title w3-display-topleft w3-padding">Google Expeditions</div>
+                        <img src="img/gexpeditions/gexpeditions.png" alt="Google Expeditions logo" style="width:100%">
+                    </div>
+                </a>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('external-apps/sitesinvr.html')">
+                    <div class="w3-display-container">
+                        <div id="sites" class="project-title w3-display-topleft w3-padding">Sites in VR</div>
+                        <img src="img/sitesinvr/sitesvr.jpg" alt="Sites in VR logo" style="width:100%">
+                    </div>
+                </a>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom">
+                <a href="javascript: TRANSLATION.redirect('external-apps/matterportvr.html')">
+                    <div class="w3-display-container">
+                        <div class="project-title w3-display-topleft w3-padding">Matterport VR</div>
+                        <img src="img/matterportvr/matterport.jpg" alt="Matterport VR logo" style="width:100%">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="w3-container w3-padding-32" style="text-align:justify;">
+            <h3 id="about-header" class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+            <p id="about-text">
+                Welcome! On this site we will provide links to popular Virtual Reality and Augmented Reality systems
+                and
+                projects developed by students from the UFJF computer science course. Feel free to contact us to
+                suggest
+                improvements and enjoy the content!
+            </p>
+        </div>
+
+        <div class="w3-row-padding w3-grayscale">
+            <div class="w3-col l3 m6 w3-margin-bottom" style="text-align:justify;">
+                <img src="img/vrtools_rodrigo.jpg" alt="Rodrigo Silva" style="width:100%">
+                <h3>Rodrigo L. S. Silva</h3>
+                <p class="coord-label w3-opacity">Coordinator</p>
+                <p id="rs-info">
+                    Project coordinator and associate professor at UFJF. His main interests are Augmented Reality,
+                    Virtual Reality, Scientific Visualization and Computer Graphics.
+                </p>
+                <p>
+                    <a class="info-button w3-button w3-light-grey w3-block"
+                        href="http://lattes.cnpq.br/6878718102770367" target="_blank">More info</a>
+                </p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom" style="text-align:justify;">
+                <img src="img/vrtools_lucas.jpg" alt="Lucas da Costa" style="width:100%">
+                <h3>Lucas D. da Costa</h3>
+                <p class="dev-label w3-opacity">Developer</p>
+                <p id="lc-info">
+                    Graduated in Exact Sciences at UFJF (2014-2019). Computer Science student at UFJF. Currently
+                    interested in Virtual Reality, Augmented Reality and Computer Graphics.
+                </p>
+                <p>
+                    <a class="info-button w3-button w3-light-grey w3-block"
+                        href="http://lattes.cnpq.br/6745472257202199" target="_">More info</a>
+                </p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom" style="text-align:justify;">
+                <img src="img/vrtools_paulo.jpg" alt="Paulo Rozatto" style="width:100%">
+                <h3>Paulo Victor de M. Rozatto</h3>
+                <p class="dev-label w3-opacity">Developer</p>
+                <p id="pr-info">
+                    Computer Science student at UFJF. He loves coffe and science in general. Currently interested in
+                    Augmented Reality, Virtual Reality, and Computer Graphics.
+                </p>
+                <p>
+                    <a class="info-button w3-button w3-light-grey w3-block" href="https://github.com/Paulo-Rozatto"
+                        target="_blank">More info</a>
+                </p>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom" style="text-align:justify;">
+                <img src="img/vrtools_andre.jpg" alt="André Oliveira" style="width:100%">
+                <h3>André Luiz C. de Oliveira</h3>
+                <p class="dev-label w3-opacity">Developer</p>
+                <p id="ao-info">
+                    Computer Science student at UFJF. He loves everything about science and technology. He Currently
+                    interested in Virtual Reality, Augmented Reality and Computer Graphics.
+                </p>
+                <p>
+                    <a class="info-button w3-button w3-light-grey w3-block" href="https://github.com/andrelcol"
+                        target="_blank">More
+                        info</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="w3-container w3-padding-32" id="contact">
+            <h3 id="contact-header" class="w3-border-bottom w3-border-light-grey w3-padding-16">Contact</h3>
+            <p id="contact-content">Lets get in touch and talk about your next project.</p>
+            <form name="gform" id="gform"
+                action="https://docs.google.com/forms/d/e/1FAIpQLScT0oKS0BJ2vBWH5zVIlBgfFiZG9bgcDiuPka5jAZVDkFW8hw/formResponse?"
+                target="hidden_iframe" onsubmit="showModal()">
+                <input class="w3-input w3-border" type="text" placeholder="Name" required name="entry.107470474"
+                    id="entry.107470474">
+                <input class="w3-input w3-section w3-border" type="email" placeholder="Email" required
+                    name="entry.1094368542" id="entry.1094368542">
+                <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required
+                    name="entry.846857464" id="entry.846857464">
+                <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required
+                    name="entry.1607362201" id="entry.1607362201">
+                <button id="message-button" class="w3-button w3-black w3-section" type="submit" onclick="submitForm()">
+                    SEND MESSAGE
+                </button>
+            </form>
+
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="resetForm()"></iframe>
+
+            <div id="modal" class="w3-modal">
+                <div class="w3-modal-content">
+                    <div class="w3-container w3-blue">
+                        <span onclick="document.getElementById('modal').style.display='none'"
+                            class="w3-button w3-display-topright">&times;</span>
+                        <h3 id="modal-header">Contact</h3>
+                    </div>
+                    <div class="w3-container">
+                        <br>
+                        <p id="modal-message">Your message was sent!</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- End page content -->
+    </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-16">
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
+                class="w3-hover-text-green">w3.css</a></p>
+    </footer>
+
+    <script>
+        function submitForm() {
+            document.getElementById("gform").submit()
+        }
+
+        function resetForm() {
+            document.getElementById("gform").reset()
+
+        }
+
+        function showModal() {
+            document.getElementById("modal").style.display = "block"
+        }
+
+        function redirectTo(url) {
+
+        }
+
+        TRANSLATION.add(
+            '#external-apps-header',
+            'External Apps',
+            'Aplicativos externos'
+        );
+
+        TRANSLATION.add(
+            '#projects-header',
+            'Projects',
+            'Projetos'
+        );
+
+        TRANSLATION.add(
+            '#platonic-solids',
+            'Platonic Solids',
+            'Sólidos Platônicos'
+        );
+
+        TRANSLATION.add(
+            '#solar-system',
+            'Solar System',
+            'Sistema Solar'
+        );
+
+        TRANSLATION.add(
+            '#architecture',
+            'Architecture',
+            'Arquitetura'
+        );
+
+        TRANSLATION.add(
+            '#projectile-motion',
+            'Projectile Motion',
+            'Movimento de Projéteis'
+        );
+
+        TRANSLATION.add(
+            '#inclined-plane',
+            'Inclined Plane',
+            'Plano Inclinado'
+        );
+
+        TRANSLATION.add(
+            '#vascular-diseases',
+            'Vascular Diseases',
+            'Doenças Vasculares'
+        );
+
+        TRANSLATION.add(
+            '#virtual-travel',
+            'Virtual Travel',
+            'Viagem Virtual'
+        );
+
+        TRANSLATION.add(
+            '#historical-figures',
+            'Historical Figures',
+            'Figuras Históricas'
+        );
+
+        TRANSLATION.add(
+            '#circuits',
+            'Electric Circuits',
+            'Circuitos Elétricos'
+        );
+
+        TRANSLATION.add(
+            '#mars',
+            'Mars',
+            'Marte'
+        )
+
+        TRANSLATION.add(
+            '#about-header',
+            'About',
+            'Sobre'
+        );
+
+        TRANSLATION.add(
+            '#sites',
+            'Sites in VR',
+            'Sites em RV'
+        );
+
+        TRANSLATION.add(
+            '#about-text',
+            'Welcome! On this site we will provide links to popular Virtual Reality and Augmented Reality systems and projects developed by' +
+            ' students from the UFJF computer science course. Feel free to contact us to suggest improvements and enjoy the content!',
+            'Bem Vindo! Nesse site disponibilizamos links para aplicativos populares de Realidade Virtual e de Realidade Aumentada e para ' +
+            'projetos desenvolvidos por alunos de Ciência da Computação da UFJF. Sinta-se à vontade para sugerir melhorias e aproveite o conteúdo!'
+        );
+
+        TRANSLATION.add(
+            '#rs-info',
+            'Project coordinator and associate professor at UFJF. His main interests are Augmented Reality, Virtual Reality, Scientific Visualization' +
+            ' and Computer Graphics.',
+            'Orientador do projeto e professoar associado na UFJF. Seus principais interesses são Realidade Aumentada, Realidade virtual, Visualização ' +
+            'Científica e Computação Gráfica.',
+        );
+
+        TRANSLATION.add(
+            '#lc-info',
+            'Graduated in Exact Sciences at UFJF (2014-2019). Computer Science student at UFJF. Currently interested in Virtual Reality, Augmented Reality' +
+            ' and Computer Graphics.',
+            'Graduado em Ciências Exatas pela UFJF(2014-2019). Estudante de Ciência da Computação da UFJF. Atualmente seus principais interesses são' +
+            'Realidade Virtual, Realidade Aumentada e Computação Gráfica.',
+        );
+
+        TRANSLATION.add(
+            '#pr-info',
+            ' Computer Science student at UFJF. He loves coffe and science in general. Currently interested in Augmented Reality, Virtual Reality,' +
+            ' and Computing for Education.',
+            'Estudante de Ciência da Computação da UFJF. Amante de café e de ciência em geral. Atualmente interessado em' +
+            'Realidade Virtual, Realidade Aumentada e Computação para Educação.',
+        );
+
+        TRANSLATION.add(
+            '#ao-info',
+            'Computer Science student at UFJF. He loves everything about science and technology. He Currently interested in Virtual Reality,' +
+            ' Augmented Reality and Computer Graphics.',
+            'Estudante de Ciência da Computação da UFJF. Adora tudo sobre ciência e tecnologia. Atualmente seus principais interesses são ' +
+            'Realidade Virtual, Realidade Aumentada e Computação Gráfica.',
+        );
+
+        TRANSLATION.add(
+            '.coord-label',
+            'Coordinator',
+            'Orientador',
+        );
+
+        TRANSLATION.add(
+            '.dev-label',
+            'Developer',
+            'Desenvolvedor',
+        );
+
+        TRANSLATION.add(
+            '.info-button',
+            'More info',
+            'Mais informações',
+        );
+
+        TRANSLATION.add(
+            '#contact-header',
+            'Contact',
+            'Contato',
+        );
+
+        TRANSLATION.add(
+            '#contact-content',
+            'Lets get in touch and talk about your next project.',
+            'Vamos entrar em contato e falar sobre seu próximo projeto.',
+        );
+
+        TRANSLATION.add(
+            '#modal-message',
+            'Your message was sent!',
+            'Sua mensagem foi enviada!',
+        );
+
+        TRANSLATION.add(
+            '#modal-header',
+            'Contact',
+            'Contato'
+        );
+
+        TRANSLATION.add(
+            '#message-button',
+            'Send message',
+            'Enviar mensagem'
+        );
+
+        TRANSLATION.add(
+            '#comment',
+            'Name',
+            'Nome'
+        );
+
+    </script>
+
+</body>
+
+</html>

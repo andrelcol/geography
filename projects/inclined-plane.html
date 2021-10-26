@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title">Inclined Plane</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/translation.js"></script>
+    <script src="../components/navbar.js"></script>
+</head>
+
+<body>
+    <!-- Navbar (sit on top) -->
+    <navbar-component></navbar-component>
+
+    <!-- Page content -->
+    <div class="w3-content w3-padding " style="max-width:1564px ">
+
+        <div class="w3-container w3-padding-32 " id="projects">
+            <h1 id="header" class="w3-padding-16 w3-border-bottom w3-border-light-grey ">Inclined Plane</h1>
+        </div>
+
+        <div class="w3-container" id="about" style="text-align:justify;">
+            <p id="p1">
+                This is a typical high school physics exercise. It involves a real situation of sliding of a block on an
+                inclined plane and focuses on analyzing how the forces act on it in this scenario.
+                It is usually guided by three basic forces: Weight, Normal and Friction.
+            </p>
+            <p id="p2">
+                We have the decomposition of the Weight on the X axis and the Y axis. The Normal force will act in the 
+                opposite direction to the Weight in Y and the frictional force will be opposite to the weight in X, so the 
+                greater the frictional force, the less the block will move or remain stationary, however, otherwise, the block 
+                will descend the inclined plane with greater or lesser speed depending on the frictional force. The below application 
+                shows a simulation of this scenery with the forces diagram and the main equations.
+            </p>
+
+        </div>
+
+        <div class="w3-container w3-row ">
+            <!-- workaround to center iframe -->
+            <div class="w3-col m2 l2 w3-hide-small">
+                <p></p>
+            </div>
+            <iframe id="scene" class="w3-col l8" src="./src/inclined-plane-application.html" height="400"
+                style="border:2px solid black;"></iframe>
+            <script>
+                // Check page is changed and reload the application with another language
+                // store url on load
+                let currentPage = location.href;
+
+                // listen for changes
+                setInterval(function()
+                {
+                    if (currentPage != location.href)
+                    {
+                        // page has changed, set new page as 'current'
+                        currentPage = location.href;
+                        
+                        // do your thing..
+                        translationApplication();
+                    }
+                }, 500);
+
+
+                // iOS iframe auto-resize workaround
+
+                if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
+
+                    var scene = document.getElementById('scene');
+
+                    scene.style.width = getComputedStyle(scene).width;
+                    scene.style.height = getComputedStyle(scene).height;
+                    scene.setAttribute('scrolling', 'no');
+                }
+            </script>
+        </div>
+
+        <!-- More modes -->
+        <div class="w3-container w3-padding-32 ">
+            <h3 id="more-modes-header" class="w3-padding-16 w3-border-bottom w3-border-light-grey ">More modes</h3>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+                <a href="javascript: TRANSLATION.redirect('projects/src/inclined-plane-application.html', '', true);">
+                    <div class="more-modes w3-display-container"
+                         style="background: url('img/Inclined-Plane/blur.png') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/fullscreen-icon.png" alt="fullscreen" style="width: 64px;" />
+                            <br />
+                            <div id="fullscreen">Fullscreen</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+                <a href="javascript: TRANSLATION.redirect('projects/src/inclined-plane-application-AR.html', '', true);">
+                    <div class="more-modes w3-display-container"
+                         style="background: url('img/Inclined-Plane/blur-AR.png') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/ar-icon.png" alt="Augmented Reality" style="width: 64px;" />
+                            <br />
+                            <div id="ar">Augmented Reality</div>
+                        </div>
+                    </div>
+                </a>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                    <div id="warning-fiducial">
+                        You must print a fiducial marker to use Augmented Reality mode (<a href="data/markers/hiro.png"
+                                                                                           target="_blank">click here</a> to
+                        download).
+                    </div>
+                </p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+                <a href="javascript: TRANSLATION.redirect('projects/src/inclined-plane-application-VR.html', '', true);">
+                    <div class="more-modes w3-display-container"
+                         style="background: url('img/Inclined-Plane/blur.png') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/vr-icon.png" alt="fullscreen" style="width: 64px;" />
+                            <br />
+                            <div id="vr">Virtual Reality</div>
+                        </div>
+                    </div>
+                </a>
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                    <div id="warning-hmd-1">
+                        In order to fully experience the VR mode, it is required one HMD (head-mounted display).
+                    </div>
+                </p>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                    <div id="warning-vr">
+                        It may be necessary to accept the installation of <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                             target="_blank">Google Virtual Reality services</a>
+                        on the first access.
+                    </div>
+                </p>
+            </div>
+
+        </div>
+
+        <!-- End of more modes -->
+
+        <div class="w3-container w3-padding-32 ">
+            <h3 id="images-header" class="w3-padding-16 w3-border-bottom w3-border-light-grey">Images in Augmented and Virtual Reality</h3>
+        </div>
+
+        <div class="w3-content w3-display-container w3-center w3-row ">
+
+            <img class="slide " src="./img/Inclined-Plane/screenshot1-AR.png" onclick="openModal(1)"
+                style="height: 100%; border:1px solid black">
+            <img class="slide " src="./img/Inclined-Plane/screenshot2-AR.png" onclick="openModal(2)"
+                style="height: 100%; border:1px solid black">
+
+            <button id="btn-left " class="w3-button w3-black w3-display-left w3-hide-large "
+                onclick="plusDivs(-1) ">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right w3-hide-large " onclick="plusDivs(1) ">&#10095;</button>
+        </div>
+
+        <div id="modal-slideshow" class="w3-modal w3-black">
+            <div class="w3-content w3-center" style="height: 80%;">
+                <img class="slide-modal-2 w3-display-middle" src="./img/Inclined-Plane/screenshot1-AR.png"
+                    style="height: 100%; border:1px solid black">
+                <img class="slide-modal-2 w3-display-middle" src="./img/Inclined-Plane/screenshot2-AR.png"
+                    style="height: 100%; border:1px solid black">
+                <span class="w3-black w3-text-white w3-opacity w3-display-left w3-btn" onclick="plusModal(-1)">❮</span>
+                <span class="w3-black w3-text-white w3-opacity w3-display-right w3-btn" onclick="plusModal(1)">❯</span>
+            </div>
+
+            <span
+                class="w3-black w3-text-white w3-opacity w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+                onclick="closeModal2()" style="cursor:pointer">×</span>
+        </div>
+
+        <div class="w3-panel w3-leftbar w3-serif">
+            <h5><b>Reference:</b></h5>
+            <p><i>Tom Henderson, "Inclined Planes." From The Physics Classroom.
+                    https://www.physicsclassroom.com/class/vectors/Lesson-3/Inclined-Planes </i></p>
+            <p><i>The Editors of Encyclopaedia Britannica, "Inclined Plane" From Encyclopædia Britannica, inc. Web
+                    resource
+                    https://www.britannica.com/technology/inclined-plane</i></p>
+        </div>
+
+        <!-- End page content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-16 ">
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp " title="W3.CSS " target="_blank "
+                class="w3-hover-text-green ">w3.css</a></p>
+    </footer>
+
+    <script>
+
+        TRANSLATION.onTranslate = function () {
+            // document.querySelector('#scene').src = 'src/architecture-application.html?lang=' + TRANSLATION.currentLang;
+            document.querySelector('#scene').contentWindow.changeLanguage(TRANSLATION.currentLang);
+        }
+
+
+        TRANSLATION.add(
+            '#title',
+            'Inclined Plane',
+            'Plano Inclinado'
+        );
+
+        TRANSLATION.add(
+            '#header',
+            'Inclined Plane',
+            'Plano Inclinado'
+        );
+
+        TRANSLATION.add(
+            '#p1',
+            `This is a typical high school physics exercise. It involves a real situation of sliding of a block on an
+                inclined plane and focuses on analyzing how the forces act on it in this scenario.
+                It is usually guided by three basic forces: Weight, Normal and Friction.`,
+
+            `Este é um exercício típico de física do ensino médio. Trata-se de uma situação real de deslizamento de um 
+                bloco em um plano inclinado e se concentra em analisar como as forças atuam sobre ele neste cenário. Geralmente 
+                é guiado por três forças básicas: Peso, Normal e Atrito.`
+        );
+
+        TRANSLATION.add(
+            '#p2',
+            ` We have the decomposition of the Weight on the X axis and the Y axis. The Normal force will act in the opposite
+                direction to the Weight in Y and the frictional force will be opposite to the weight in X, so the greater the 
+                frictional force, the less the block will move or remain stationary, however, otherwise, the block will descend 
+                the inclined plane with greater or lesser speed depending on the frictional force. The below application shows 
+                a simulation of this scenery with the forces diagram and the main equations.`,
+
+            `Temos a decomposição do Peso no eixo X e no eixo Y. A força normal atuará na direção oposta ao peso em 
+                Y e a força de atrito será oposta ao peso em X, portanto, quanto maior a força de atrito, menos o bloco 
+                se moverá ou permanecerá estacionário, porém, caso contrário, o bloco irá descer o plano inclinado com 
+                maior ou menor velocidade dependendo da força de atrito. O aplicativo abaixo mostra uma simulação deste 
+                cenário com o diagrama de forças e as principais equações.`
+        );
+
+        TRANSLATION.add(
+            '#fullscreen',
+            'Fullscreen',
+            'Tela cheia'
+        );
+
+        TRANSLATION.add(
+            '#ar',
+            'Augmented Reality',
+            'Realidade Aumentada',
+        );
+
+        TRANSLATION.add(
+            '#vr',
+            'Virtual Reality',
+            'Realidade Virtual'
+        );
+
+        TRANSLATION.add(
+            '#warning-fiducial',
+            `You must print a fiducial marker to use Augmented Reality mode (<a href="data/markers/hiro.png" target="_blank">click here</a> to download).`,
+            `É necessário imprimir o marcador fiducial para usar o modo de Realidade Aumentada (<a href="data/markers/hiro.png" target="_blank">
+                Clique aqui</a> par baixar).`
+        );
+
+        TRANSLATION.add(
+            '#warning-hmd-1',
+            `In order to fully experience the VR mode, it is required one HMD (head-mounted display).`,
+            `Para uma experiência completa no modo RV, é necessário usar um HMD (head-mounted display).`
+        );
+
+        TRANSLATION.add(
+            '#warning-vr',
+            ` It may be necessary to accept the installation of <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                        target="_blank">Google Virtual Reality services</a>
+                        on the first access. `,
+            `  Pode ser necessário aceitar a instalação dos <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                        target="_blank">serviços de Realidade Virtual da Google</a>
+                        no primeiro acesso. `
+        );
+
+        TRANSLATION.add(
+            '#more-modes-header',
+            'More modes',
+            'Mais modos'
+        );
+
+        TRANSLATION.add(
+            '#images-header',
+            'Images in Augmented and Virtual Reality',
+            'Imagens em Realidade Virtual e Aumentada'
+        );        
+
+        // TRANSLATION.add(
+        //     '#bottom',
+        //     'Powered by ',
+        //     'Distribuído por '
+        // );
+
+    </script>
+</body>
+
+</html>

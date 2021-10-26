@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Projectile Motion VR</title>
+
+    <style>
+        .panel {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            width: 80%;
+            transform: translateY(-50%);
+            margin: auto;
+            padding-left: 5px;
+            font-size: 1.2em;
+            z-index: 1;
+        }
+
+        #info {
+            background-color: rgba(255, 255, 255, 0.75);
+            color: #444;
+            border: #444 1px solid;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .panel {
+                width: 45%;
+                text-align: left;
+            }
+        }
+    </style>
+
+    <script src="../../js/translation.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../libs/aframe-master.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../libs/aframe-button-controls.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../libs/aframe-physics-system.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../libs/other/howler.js"></script>
+    <script src="../libs/orbi.js"></script>
+
+    <script>
+        AFRAME.registerComponent('appcode', {
+            init: function () {
+                const self = this;
+                const orbi = document.querySelector('[orbi]').components['orbi'];
+                var messages = TRANSLATION.currentLang === TRANSLATION.EN_US ?
+                    ['The crate was released...', 'The crate hit the ground.', 'You win!\nPress your action button to start again!']
+                    :
+                    ['A caixa foi solta...', 'A caixa atingiu o solo.', 'Você ganhou!\nAperte seu botão de ação para começar de novo!'];
+                const isHandsfree = new URLSearchParams(window.location.search).get('handsfree') === 'true';
+
+                if (isHandsfree) {
+                    if (TRANSLATION.currentLang == TRANSLATION.EN_US) {
+                        orbi.addButton('myButton', '#dropTexture', () => {
+                            if (!self.isPaused && !self.released) {
+                                orbi.showMessage(messages[0])
+                                self.dropCrate();
+                                self.released = true;
+                                orbi.showMessage(messages[0])
+                            }
+
+                            if (self.win) {
+                                self.el.sceneEl.exitVR();
+                            }
+                        });
+                    }
+
+                    if (TRANSLATION.currentLang == TRANSLATION.PT_BR) {
+                        orbi.addButton('myButton', '#dropTexture-pt-BR', () => {
+                            if (!self.isPaused && !self.released) {
+                                orbi.showMessage(messages[0])
+                                self.dropCrate();
+                                self.released = true;
+                                orbi.showMessage(messages[0])
+                            }
+
+                            if (self.win) {
+                                self.el.sceneEl.exitVR();
+                            }
+                        });
+                    }
+                }
+                else {
+                    orbi.addButton('placeHolder');
+                    orbi.cursor.object3D.visible = false
+                }
+
+                orbi.hide()
+                orbi.showSideText('oi'); // there's some bug in showSideText requiring to call it here
+                orbi.hideSideText();
+                orbi.isToChangeTheta = true;
+
+                this.isPaused = true;
+                this.released = false;
+
+                this.airplane = document.querySelector('#airplane').object3D;
+                this.crate = document.querySelector('#crate').object3D;
+                this.camera = document.querySelector('#camera').object3D;
+
+                this.isDropping = false;
+                this.velocity = 50;
+                this.vx = 0;
+                this.vz = 0;
+                this.radiusSquared = 250000; // sqrt(250,000) = 500 - it's squared because this way requires less Math.sqrt() calls
+                this.distanceSquared;
+                this.pauseVelAux = { x: 0, y: 0, z: 0 };
+
+                // ----- Loading sound ----- //
+
+                this.airplaneSound = new Howl({
+                    src: ['assets/sounds/airplane.wav'], // Huggy13ear https://freesound.org/s/138957/
+                    volume: 50,
+                    loop: true,
+                });
+                this.soundLimiter = 0; // I'm using it to limit the amount of simultaneous sound being played
+                this.crateSound = new Howl({
+                    src: ['assets/sounds/dropped-wood.wav'], // Jagadamba https://freesound.org/s/258051/
+                    volume: 30,
+                    onplay: () => { self.soundLimiter++ },
+                    onend: () => { self.soundLimiter-- },
+                });
+                this.winSound = new Howl({
+                    src: ['assets/sounds/win.wav'], // Mativve https://freesound.org/people/Mativve/sounds/391539/
+                    volume: 2,
+                });
+                Howler.pos(0, 1.6, 0); // Sound listener position
+
+                // ----- Positionating airplane ----- //
+
+                this.randomizeAirplanePosition();
+
+                // ----- Event listeners ----- //
+
+                this.crate.el.addEventListener('collide', () => {
+                    // Howler.js seems to have the x-axis and z-axis inverted when compared to THREE.js
+                    self.crateSound.pos(self.crate.position.z, self.crate.position.y, self.crate.position.x);
+
+                    if (self.isDropping) {
+                        // r^2 = 11.5^2 = 132.25
+                        if ((self.crate.position.x * self.crate.position.x) + (self.crate.position.z * self.crate.position.z) <= 132.25) {
+                            self.win = true;
+                            self.winSound.play();
+                            pause();
+
+                            orbi.isToChangeTheta = false;
+                            self.el.setAttribute('orbi', {
+                                theta: (self.camera.rotation.y * 180 / Math.PI) + 30,
+                                phi: 0,
+                                sideTextRotation: -30,
+                                messageBG: '#509000',
+                            });
+                            orbi.showSideText(messages[2]);
+
+                            if (isHandsfree) {
+                                orbi.buttons[0].material.map = new THREE.TextureLoader().load('assets/textures/projectile-motion/play-again.png');
+                                orbi.buttons[0].material.needsUpdate = true;
+                            }
+                        }
+                        else {
+                            orbi.showMessage(messages[1])
+                        }
+                    }
+
+                    this.isDropping = false;
+
+                    if (!self.isPaused && self.soundLimiter < 3)
+                        self.crateSound.play();
+                });
+
+                this.el.sceneEl.addEventListener('enter-vr', () => {
+                    if (self.win) {
+                        self.win = false;
+                        document.querySelector('#info').style.display = 'none';
+
+                        orbi.isToChangeTheta = true;
+                        orbi.hideSideText();
+                        self.el.setAttribute('orbi', {
+                            phi: -15,
+                            messageBG: '#000000',
+                        });
+
+                        if (isHandsfree) {
+                            orbi.buttons[0].material.map = new THREE.TextureLoader().load('assets/textures/projectile-motion/dropButton.png');
+                            orbi.buttons[0].material.needsUpdate = true;
+                        }
+
+                        self.randomizeAirplanePosition();
+                    }
+                    else {
+                        document.querySelector('#info').style.display = 'none';
+                        self.crate.el.body.velocity.set(self.pauseVelAux.x, self.pauseVelAux.y, self.pauseVelAux.z);
+                    }
+
+                    self.isPaused = false;
+
+                    self.airplaneSound.play();
+                    self.airplane.el.setAttribute('velocity', { x: this.vx, y: 0, z: this.vz });
+
+                    self.crate.el.body.mass = 5;
+
+                    orbi.show();
+                });
+
+                this.el.sceneEl.addEventListener('exit-vr', () => {
+                    document.querySelector('#info').style.display = 'block';
+                    orbi.hide();
+                    pause();
+                });
+
+                function pause() {
+                    self.isPaused = true;
+
+                    self.airplaneSound.pause();
+                    self.airplane.el.setAttribute('velocity', { x: 0, y: 0, z: 0 });
+
+                    self.crate.el.body.mass = 0;
+                    self.pauseVelAux = self.crate.el.body.velocity.clone();
+                    self.crate.el.body.velocity.set(0, 0, 0);
+                }
+
+                this.el.sceneEl.addEventListener('loaded', () => {
+                    document.querySelector('#info').style.display = 'block';
+                });
+
+                document.querySelector('[button-controls]').addEventListener('buttondown', () => { // Listen click, touch, and joystick button pressed events
+                    if (!self.isPaused && !self.released) {
+                        self.dropCrate();
+                        self.released = true;
+                        orbi.showMessage(messages[0])
+                    }
+
+                    if (self.win) {
+                        self.el.sceneEl.exitVR();
+                    }
+                });
+            },
+            tick: function () {
+                if (this.isPaused) return;
+
+                this.distanceSquared = (this.airplane.position.x * this.airplane.position.x) + (this.airplane.position.z * this.airplane.position.z);
+
+                // Howler.js seems to have the x-axis and z-axis inverted when compared to THREE.js
+                this.airplaneSound.pos(
+                    this.airplane.position.z,
+                    this.airplane.position.y,
+                    this.airplane.position.x,
+
+                );
+
+                Howler.orientation( // rotates the sound listener
+                    Math.cos(this.camera.rotation.y), 0, Math.sin(this.camera.rotation.y),
+                    0, 1, 0
+                );
+
+                if (this.distanceSquared > this.radiusSquared) {
+                    this.airplane.visible = false;
+                    this.airplane.el.setAttribute('velocity', { x: 0, y: 0, z: 0 });
+
+                    this.randomizeAirplanePosition();
+
+                    this.airplane.visible = true;
+                    this.airplane.el.setAttribute('velocity', { x: this.vx, y: 0, z: this.vz });
+                }
+            },
+            randomizeAirplanePosition: function () {
+                let x, z, theta;
+
+                // x^2 + z^2 = r^2
+                x = Math.floor(Math.random() * this.radiusSquared); // random number between [0, r^2)
+                z = this.radiusSquared - x;
+
+                this.airplane.position.x = Math.sqrt(x) * (Math.random() > 0.5 ? 1 : -1);
+                this.airplane.position.z = Math.sqrt(z) * (Math.random() > 0.5 ? 1 : -1);
+                this.airplane.position.y = Math.random() * 200 + 50;// random values in the interval [50, 250)
+
+                theta = Math.atan(this.airplane.position.z / this.airplane.position.x);
+
+                this.airplane.rotation.y = (Math.PI / 2) - theta; // Math.PI / 2 refers to airplane object inital rotation
+                this.vx = this.velocity * Math.cos(theta);
+                this.vz = this.velocity * Math.sin(theta);
+
+
+                this.released = false;
+            },
+            dropCrate: function () {
+                this.crate.visible = true;
+                this.crate.el.body.position.set(this.airplane.position.x, this.airplane.position.y, this.airplane.position.z)
+                this.crate.el.body.angularVelocity.set(0, 0, 0);
+                this.crate.el.body.velocity.set(this.vx, 0, this.vz);
+
+                this.isDropping = true;
+            },
+        });
+    </script>
+</head>
+
+<body>
+    <div id="info" class="panel">
+        <h2 id="inst">Instructions: </h2>
+        <p id="desc">Try to release the crate at the right time to hit the target!</p>
+        <div class="w3">
+            <p id="p1"><b>Google Cardboard:</b> press the button to release the crate</p>
+        </div>
+
+        <p id="joy"><b>Joystick:</b> Press any button to release the crate</p>
+        <p id="mouse"><b>Mouse:</b> Click in the screen to release the crate</p>
+        <p id="start"><b>Start:</b> Press the VR button in the bottom right corner to enter in Virtual Reality mode and
+            start.</p>
+    </div>
+
+    <a-scene id="scene" physics="friction: 0.8; restitution: 0.1">
+        <a-assets timeout="3000">
+            <a-asset-item id="airplaneModel" src="assets/models/airplane.glb"></a-asset-item>
+            <img id="skyBoxMap" src="assets/textures/cloud.jpg">
+            <img id="grass" src="assets/textures/grass.png">
+            <img id="crateTexture" src="assets/textures/crate.png">
+            <img id="targetTexture" src="assets/textures/target1.png">
+            <img id="dropTexture" src="assets/textures/projectile-motion/dropButton.png">
+            <img id="dropTexture-pt-BR" src="assets/textures/projectile-motion/dropButton-pt-BR.png">
+        </a-assets>
+
+        <a-entity light=" type: ambient; color: #fff; intensity: 0.1">
+        </a-entity>
+        <a-entity light="color: #fff" position="65 110 52"></a-entity>
+
+        <a-sky id="skyBox" material="src: #skyBoxMap" radius="850"></a-sky>
+
+        <a-plane id="ground" material="src: #grass; repeat: 140, 140, transparent: false, alphaTest: 0.5"
+            position="0 0 0" rotation="-90 0 0" width="1700" height="1700" static-body>
+        </a-plane>
+
+        <a-circle id="target" src="#targetTexture" radius="10" position="0 0.05 0" rotation="-90 0 0"></a-circle>
+
+        <a-box id="crate" src="#crateTexture" height="4" width="4" depth="4" position="0 2 0" visible="true"
+            dynamic-body="linearDamping: 0; angularDamping: 0.01;">
+        </a-box>
+
+        <a-entity id="airplane" gltf-model="#airplaneModel" scale="0.25 0.25 0.25"
+            body="type: dynamic; mass: 0; shape: none;">
+        </a-entity>
+
+        <a-entity id="aimHelper"></a-entity>
+
+        <a-entity id="rig" position="0 0 0">
+            <a-entity id="camera" camera position="0 1.6 0" look-controls="pointerLockEnabled: true"
+                wasd-controls="acceleration:900; fly: false; enabled: true">
+            </a-entity>
+        </a-entity>
+
+        <a-entity rotation="0 90 0"
+            orbi="dimension: 1 1; buttonSize: 0.2 0.2; orbits:1.25; theta: 0; phi: -15; movementBar: false; 
+            font:assets/fonts/roboto-msdf.json; negate: false; transparency: true; bgTransparency: false; sideTextSize: 0.75 1.5"
+            button-controls appcode>
+        </a-entity>
+
+        <script type="text/javascript">
+            function changeLanguage(lang) {
+                switch (lang) {
+                    case 'pt-BR':
+                        {
+                            TRANSLATION.translateDocument(TRANSLATION.PT_BR)
+                            break;
+                        }
+                    case 'en-US':
+                        {
+                            TRANSLATION.translateDocument(TRANSLATION.EN_US)
+                            break;
+                        }
+                }
+            }
+
+            TRANSLATION.add(
+                '#inst',
+                'Instructions',
+                'Instruções',
+            );
+
+            TRANSLATION.add(
+                '#desc',
+                'Try to release the crate at the right time to hit the target!',
+                'Tente soltar a caixa no momento certo para acertar o alvo!',
+            );
+
+            TRANSLATION.add(
+                '#p1',
+                '<b>Google Cardboard:</b> press the button to release the crate',
+                '<b>Google Cardboard:</b> pressione o botão para soltar a caixa',
+            );
+
+            TRANSLATION.add(
+                '#joy',
+                '<b>Joystick:</b> Press any button to release the crate',
+                '<b>Joystick:</b> Pressione qualquer botão para liberar a caixa.',
+            );
+
+            TRANSLATION.add(
+                '#mouse',
+                '<b>Mouse:</b> Click in the screen to release the crate',
+                '<b>Mouse:</b> Clique na tela para liberar a caixa.',
+            );
+
+            TRANSLATION.add(
+                '#start',
+                '<b>Start:</b> Press the VR button in the bottom right corner to enter in Virtual Reality mode and start.',
+                '<b>Começar:</b> Pressione o botão VR no canto inferior direito para entrar no modo Realidade Virtual e iniciar.',
+            );
+            TRANSLATION.add(
+                '#title',
+                'Projectile Motion - VR',
+                'Movimento de Projéteis - RV'
+            );
+        </script>
+
+
+    </a-scene>
+</body>
+
+</html>

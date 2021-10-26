@@ -1,0 +1,344 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title">Projectile motion</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/translation.js"></script>
+    <script src="../components/navbar.js"></script>
+</head>
+
+<body>
+
+    <!-- Navbar (sit on top) -->
+    <navbar-component></navbar-component>
+
+    <!-- Page content -->
+    <div class="w3-content w3-padding " style="max-width:1564px ">
+
+        <div class="w3-container w3-padding-32 " id="projects">
+            <h1 id="header" class="w3-padding-16 w3-border-bottom w3-border-light-grey ">Projectile Motion</h1>
+        </div>
+
+        <div class="w3-container" id="about" style="text-align:justify;">
+            <p id="p1">
+                If an object thrown into the air and the only force which acts upon it is gravity, that object is under
+                projectile motion. Surely, there will always be the air resistance force, but we usually assume it is
+                negligible, since it is a good approximation when the object’s weight is large compared to the air
+                resistance force.
+            </p>
+
+            <p id="p2">
+                The motion can be split in two components: the vertical component (y) and the horizontal component (x).
+                The gravity pulls the object down, thus this force acts only on the velocity of the vertical component
+                (vy). The velocity in the horizontal component (vx) will remain constant along the object’s path.
+            </p>
+        </div>
+
+        <div class="w3-container w3-row ">
+            <!-- workaround to center iframe -->
+            <div class="w3-col m2 l2 w3-hide-small">
+                <p></p>
+            </div>
+            <iframe id="scene" class="w3-col l8" src="./src/projectile-motion-application.html" height="530"
+                style="border:2px solid black;"></iframe>
+            <script>
+                // iOS iframe auto-resize workaround
+
+                if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
+
+                    var scene = document.getElementById('scene');
+
+                    scene.style.width = getComputedStyle(scene).width;
+                    scene.style.height = getComputedStyle(scene).height;
+                    scene.setAttribute('scrolling', 'no');
+                }
+            </script>
+        </div>
+
+        <!-- More modes -->
+        <div class="w3-container w3-padding-32 ">
+            <h3 id="more-modes-header" class="w3-padding-16 w3-border-bottom w3-border-light-grey ">More modes</h3>
+        </div>
+        <div class="w3-row-padding">
+
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+                <a
+                    href="javascript: TRANSLATION.redirect('projects/src/projectile-motion-application.html', '', true);">
+                    <div class="more-modes w3-display-container"
+                        style="background: url('img/Projectile-Motion/blur.jpg') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/fullscreen-icon.png" alt="fullscreen" style="width: 64px;" />
+                            <br />
+                            <div id="fullscreen">Fullscreen</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+
+                <a
+                    href="javascript: TRANSLATION.redirect('projects/src/projectile-motion-application-AR.html', '', true);">
+                    <div class="more-modes w3-display-container"
+                        style="background: url('img/Projectile-Motion/blur-ar.jpg') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/fullscreen-icon.png" alt="Augmented Reality icon"
+                                style="width: 64px;" />
+                            <br />
+                            <div id="ar">Augmented Reality</div>
+                        </div>
+                    </div>
+                </a>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                <div id="warning-fiducial">
+                    You must print a fiducial marker to use Augmented Reality mode (<a href="data/markers/hiro.png"
+                        target="_blank">click here</a> to
+                    download).
+                </div>
+                </p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+
+                <a
+                    href="javascript: TRANSLATION.redirect('projects/src/projectile-motion-application-VR.html', '&handsfree=false', true);">
+                    <div class="more-modes w3-display-container"
+                        style="background: url('img/Projectile-Motion/blur-vr.jpg') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/vr-icon.png" alt="fullscreen" style="width: 64px;" />
+                            <br />
+                            <div id="vr">Virtual Reality</div>
+                        </div>
+                    </div>
+                </a>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                <div id="warning-hmd-1">
+                    In order to fully experiece the VR mode, it is required one HMD (head-mounted display).
+                    The HMD must have a button or there should be a joystick available.
+                </div>
+                </p>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                <div class="warning-vr">
+                    It may be necessary to accept the installation of <a
+                        href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                        target="_blank">Google Virtual Reality services</a>
+                    on the first access.
+                </div>
+                </p>
+            </div>
+
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+
+                <a
+                    href="javascript: TRANSLATION.redirect('projects/src/projectile-motion-application-VR.html', '&handsfree=true', true);">
+                    <div class="more-modes w3-display-container"
+                        style="background: url('img/Projectile-Motion/blur-vr.jpg') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/vr-icon.png" alt="fullscreen" style="width: 64px;" />
+                            <br />
+                            <div id="vr2">Virtual Reality (Handsfree)</div>
+                        </div>
+                    </div>
+                </a>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                <div id="warning-hmd-2">
+                    In order to fully experiece the VR mode, it is required one HMD (head-mounted display).
+                </div>
+                </p>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                <div class="warning-vr">
+                    It may be necessary to accept the installation of <a
+                        href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                        target="_blank">Google Virtual Reality services</a>
+                    on the first access.
+                </div>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="w3-panel w3-leftbar w3-serif">
+            <h5><b id="refer">Reference:</b></h5>
+            <p>
+                <i> "What is 2D projectile motion?" From Khan Academy. Web Resource
+                    https://www.khanacademy.org/science/physics/two-dimensional-motion/two-dimensional-projectile-mot/a/what-is-2d-projectile-motion</i>
+            </p>
+        </div>
+        <!-- End of more modes -->
+
+        <div class="w3-container w3-padding-32 ">
+            <h3 class="w3-padding-16 w3-border-bottom w3-border-light-grey ">
+                Images in Augmented and Virtual Reality
+            </h3>
+        </div>
+
+        <div class="w3-content w3-display-container w3-center w3-row ">
+
+            <img class="slide " src="./img/Projectile-Motion/screenshot1-AR.png" onclick="openModal(1)">
+            <img class="slide " src="./img/Projectile-Motion/screenshot2-AR.png" onclick="openModal(2)">
+            <img class="slide " src="./img/Projectile-Motion/screenshot3-AR.png" onclick="openModal(3)">
+            <img class="slide " src="./img/Projectile-Motion/example-VR.jpg" onclick="openModal(4)">
+
+            <button id="btn-left " class="w3-button w3-black w3-display-left w3-hide-large "
+                onclick="plusDivs(-1) ">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right w3-hide-large " onclick="plusDivs(1) ">&#10095;</button>
+        </div>
+
+        <div id="modal-slideshow" class="w3-modal w3-black">
+            <div class="w3-content w3-center" style="height: 80%;">
+                <img class="slide-modal w3-display-middle" src="./img/Projectile-Motion/screenshot1-AR.png"
+                    style="height: 100%;">
+                <img class="slide-modal w3-display-middle" src="./img/Projectile-Motion/screenshot2-AR.png"
+                    style="height: 100%;">
+                <img class="slide-modal w3-display-middle" src="./img/Projectile-Motion/screenshot3-AR.png"
+                    style="height: 100%;">
+                <img class="slide-modal w3-display-middle" src="./img/Projectile-Motion/example-VR.jpg"
+                    style="height: 100%;">
+
+
+                <span class="w3-black w3-text-white w3-opacity w3-display-left w3-btn" onclick="plusModal(-1)">❮</span>
+                <span class="w3-black w3-text-white w3-opacity w3-display-right w3-btn" onclick="plusModal(1)">❯</span>
+            </div>
+
+            <span
+                class="w3-black w3-text-white w3-opacity w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+                onclick="closeModal()" style="cursor:pointer">×
+            </span>
+        </div>
+
+        <!-- End page content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-16 ">
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp " title="W3.CSS " target="_blank "
+                class="w3-hover-text-green ">w3.css</a></p>
+    </footer>
+    <script src="../js/script.js"></script>
+    <script>
+
+        let currentPage = location.href;
+        // ã
+
+        TRANSLATION.onTranslate = function () {
+            document.querySelector('#scene').contentWindow.changeLanguage(TRANSLATION.currentLang);
+        }
+
+        TRANSLATION.add(
+            '#title',
+            'Projectile Motion',
+            'Movimento de projéteis',
+        );
+
+        TRANSLATION.add(
+            '#header',
+            'Projectile Motion',
+            'Movimento de Projéteis',
+        );
+
+        TRANSLATION.add(
+            '#p1',
+            `If an object thrown into the air and the only force which acts upon it is gravity, that object is under
+            projectile motion. Surely, there will always be the air resistance force, but we usually assume it is
+            negligible, since it is a good approximation when the object’s weight is large compared to the air
+            resistance force.`,
+            `Se um objeto é arremessado no ar e a única força agindo sobre ele é a gravidade, esse objeto fica em um movimento
+            de projétil. Sempre haverá a força da resistência do ar, é claro, mas geralmente assumimos que tal
+            força seja desprezível, uma vez que se obtém uma boa aproximação quando o peso do objeto é muito grande se
+            comparado à resistência do ar.`,
+        );
+
+        TRANSLATION.add(
+            '#p2',
+            `The motion can be split in two components: the vertical component (y) and the horizontal component (x).
+            The gravity pulls the object down, thus this force acts only on the velocity of the vertical component
+            (vy). The velocity in the horizontal component (vx) will remain constant along the object’s path.`,
+            `O movimento pode ser dividido em duas componentes: a componente vertical (y) e a componente horizontal (x).
+            A gravidade puxa o objeto para baixo, portanto essa força age somente na velocidade da componente vertical
+            (vy). A velocidade na componente horizontal (vx) permanece constante durante toda a trajetória do objeto.`,
+        );
+
+        TRANSLATION.add(
+            '#fullscreen',
+            'Fullscreen',
+            'Tela cheia'
+        );
+
+        TRANSLATION.add(
+            '#ar',
+            'Augmented Reality',
+            'Realidade Aumentada',
+        );
+
+        TRANSLATION.add(
+            '#vr',
+            'Virtual Reality',
+            'Realidade Virtual'
+        );
+
+        TRANSLATION.add(
+            '#vr2',
+            'Virtual Reality (Handsfree)',
+            'Realidade Virtual (Handsfree)'
+        );
+
+        TRANSLATION.add(
+            '#warning-fiducial',
+            `You must print a fiducial marker to use Augmented Reality mode (<a href="data/markers/hiro.png" target="_blank">click here</a> to download).`,
+            `É necessário imprimir o marcador fiducial para usar o modo de Realidade Aumentada (<a href="data/markers/hiro.png" target="_blank">
+                Clique aqui</a> par baixar).`
+        );
+
+        TRANSLATION.add(
+            '#warning-hmd-1',
+            `In order to fully experiece the VR mode, it is required one HMD (head-mounted display). 
+            The HMD must have a button or there should be a joystick available.`,
+            `Para uma experiência completa no modo RV, é necessário usar um HMD (head-mounted display).
+            Precisa-se que o HMD tenha algum botão ou algum joystick esteja disponível.`
+        );
+
+        TRANSLATION.add(
+            '#warning-hmd-2',
+            `In order to fully experiece the VR mode, it is required one HMD (head-mounted display), but there is no requirement for HMD buttons or joystick.`,
+            `Para uma experiência completa no modo RV, é necessário usar um HMD (head-mounted display), mas não é preciso haver botão no HMD ou algum joystick.`
+        );
+
+        TRANSLATION.add(
+            '.warning-vr',
+            ` It may be necessary to accept the installation of <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                        target="_blank">Google Virtual Reality services</a>
+                        on the first access. `,
+            `  Pode ser necessário aceitar a instalação dos <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                        target="_blank">serviços de Realidade Virtual da Google</a>
+                        no primeiro acesso. `
+        );
+
+        TRANSLATION.add(
+            '#more-modes-header',
+            'More modes',
+            'Mais modos'
+        );
+
+        TRANSLATION.add(
+            '#refer',
+            'Reference',
+            'Referências'
+        );
+    </script>
+</body>
+
+</html>

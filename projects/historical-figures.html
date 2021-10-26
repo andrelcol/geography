@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title">Historical Figures</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/w3.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/translation.js"></script>
+    <script src="../components/navbar.js"></script>
+</head>
+
+<body>
+    <!-- Navbar (sit on top) -->
+    <navbar-component></navbar-component>
+
+    <!-- Page content -->
+    <div class="w3-content w3-padding " style="max-width:1564px ">
+
+        <div class="w3-container w3-padding-32 " id="projects">
+            <h1 id="header" class="w3-padding-16 w3-border-bottom w3-border-light-grey">Historical Figures</h1>
+        </div>
+
+        <div class="w3-container" id="about" style="text-align:justify;">
+            <p id="p1">
+                Study history is important to knows what happened on the past, to know personalites that marked the epochs, wars, 
+                differents cultures and the pogress of the society. So, this application present a a book of historical figures and you 
+                need to fill the book with the picture that correspond the information text present on the pages.
+            </p>
+
+        </div>
+
+        <div class="w3-container w3-row w3-mobile" style="text-align:center;">
+            <!-- workaround to center iframe -->
+            <div class="w3-col m2 l2 w3-hide-small">
+                <p></p>
+            </div>
+            <iframe id="scene" class="w3-col l8" src="./src/historical-figures-application.html" height="400"
+                style="border:2px solid black;">
+            </iframe>
+
+
+            <script>
+
+                // iOS iframe auto-resize workaround
+
+                if (/(iPad|iPhone|iPod)/g.test(navigator.userAgent)) {
+
+                    var scene = document.getElementById('scene');
+
+                    scene.style.width = getComputedStyle(scene).width;
+                    scene.style.height = getComputedStyle(scene).height;
+                    scene.setAttribute('scrolling', 'no');
+
+                }
+            </script>
+        </div>
+
+        <!-- More modes -->
+        <div class="w3-container w3-padding-32 ">
+            <h3 id="more-modes-header" class="w3-padding-16 w3-border-bottom w3-border-light-grey ">More modes</h3>
+        </div>
+        <div class="w3-row-padding">
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+                <a id="fullscreen_link" href="./src/historical-figures-application.html" target="_blank" style="text-decoration: none;">
+                    <div class="more-modes w3-display-container"
+                        style="background: url('img/Historical-Figures/blur.png') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/fullscreen-icon.png" alt="fullscreen" style="width: 64px;" />
+                            <br />
+                            <div id="fullscreen">Fullscreen</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="w3-col l3 m6 w3-margin-bottom w3-margin-top">
+                <a id="vr_link" href="./src/historical-figures-application-VR.html" target="_" style="text-decoration: none;">
+                    <div class="more-modes w3-display-container"
+                         style="background: url('img/Historical-Figures/blur.png') center;">
+                        <div class="w3-padding" style="width:100%">
+                            <img src="img/icons/vr-icon.png" alt="fullscreen" style="width: 64px;" />
+                            <br />
+                            <div id="vr">Virtual Reality</div>
+                        </div>
+                    </div>
+                </a>
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                    <div id="warning-hmd-1">
+                        In order to fully experiece the VR mode, it is required one HMD (head-mounted display).
+                    </div>
+                </p>
+
+                <p class="more-modes-text">
+                    <img src="img/icons/alert.png" alt="alert" style="height: 32px;">
+                    <div id="warning-vr">
+                        It may be necessary to accept the installation of <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                             target="_blank">Google Virtual Reality services</a>
+                        on the first access.
+                    </div>
+                </p>
+            </div>
+        </div>
+
+        <!-- End of more modes-->
+        <div class="w3-container w3-padding-32 ">
+            <h3 id="images-header" class="w3-padding-16 w3-border-bottom w3-border-light-grey ">
+                Images in Augmented and Virtual Reality
+            </h3>
+        </div>
+
+        <!--
+        <div class="w3-content w3-display-container w3-center w3-row ">
+
+            <img class="slide " src="./img/Architecture/screenshot1-AR.jpg" onclick="openModal(1)">
+            <img class="slide " src="./img/Architecture/screenshot2-AR.jpg" onclick="openModal(2)">
+            <img class="slide " src="./img/Architecture/example-VR.jpg" onclick="openModal(3)">
+
+            <button id="btn-left " class="w3-button w3-black w3-display-left w3-hide-large " onclick="plusDivs(-1) ">
+                &#10094;
+            </button>
+            <button class="w3-button w3-black w3-display-right w3-hide-large " onclick="plusDivs(1) ">&#10095;</button>
+        </div>
+
+        <div id="modal-slideshow" class="w3-modal w3-black">
+            <div class="w3-content w3-center" style="height: 80%;">
+                <img class="slide-modal w3-display-middle" src="./img/Architecture/screenshot1-AR.jpg"
+                    style="height: 100%;">
+                <img class="slide-modal w3-display-middle" src="./img/Architecture/screenshot2-AR.jpg"
+                    style="height: 100%;">
+                <img class="slide-modal w3-display-middle" src="./img/Architecture/example-VR.jpg"
+                    style="height: 100%;">
+
+                <span class="w3-black w3-text-white w3-opacity w3-display-left w3-btn" onclick="plusModal(-1)">❮</span>
+                <span class="w3-black w3-text-white w3-opacity w3-display-right w3-btn" onclick="plusModal(1)">❯</span>
+            </div>
+
+            <span
+                class="w3-black w3-text-white w3-opacity w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+                onclick="closeModal()" style="cursor:pointer">×</span>
+        </div>
+        -->
+
+    <div class="w3-panel w3-leftbar w3-serif">
+        <h5><b>Reference:</b></h5>
+        <p>
+        <i>
+            "Amir Timur Museum". Disponível em:〈 <a href="https://pixexid.com/image/8s2711b-tamellan-museum">https://pixexid.com/image/8s2711b-tamellan-museum</a> 〉<br>
+            "Adolf Hitler". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:Adolf_Hitler_cropped_restored.jpg">https://commons.wikimedia.org/wiki/File:Adolf_Hitler_cropped_restored.jpg</a> 〉<br>
+            "Alan Turing". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:Alan_Turing_Aged_16.jpg">https://commons.wikimedia.org/wiki/File:Alan_Turing_Aged_16.jpg</a> 〉<br>
+            "Albert Einstein". Disponível em:〈 <a href="https://search.creativecommons.org/photos/ba6f5320-95d7-4727-9989-1faadae4f249">https://search.creativecommons.org/photos/ba6f5320-95d7-4727-9989-1faadae4f249</a> 〉<br>
+            "Benjamin Franklin". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:Benjamin_Franklin_by_Joseph_Siffrein_Duplessis.jpg">https://commons.wikimedia.org/wiki/File:Benjamin_Franklin_by_Joseph_Siffrein_Duplessis.jpg</a> 〉<br>
+            "Isaac Newton". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:GodfreyKneller-IsaacNewton-1689.jpg">https://commons.wikimedia.org/wiki/File:GodfreyKneller-IsaacNewton-1689.jpg</a> 〉<br>
+            "Marie Curie". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:Marie_Curie_c1920.png">https://commons.wikimedia.org/wiki/File:Marie_Curie_c1920.png</a> 〉<br>
+            "Martin Luther King Jr.". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:Martin_Luther_King_Jr_NYWTS_6.jpg">https://commons.wikimedia.org/wiki/File:Martin_Luther_King_Jr_NYWTS_6.jpg</a> 〉<br>
+            "Napoleão Bonaparte". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:Napoleon_cropFXD.jpg">https://commons.wikimedia.org/wiki/File:Napoleon_cropFXD.jpg</a> 〉<br>
+            "Winston Churchill". Disponível em:〈 <a href="https://commons.wikimedia.org/wiki/File:Sir_Winston_Churchill_-_19086236948.jpg">https://commons.wikimedia.org/wiki/File:Sir_Winston_Churchill_-_19086236948.jpg</a> 〉<br>
+        </i></p>
+    </div>
+
+    <!-- End page content -->
+    
+    <!-- Footer -->
+    <footer class="w3-center w3-black w3-padding-16 ">
+        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp " title="W3.CSS" target="_blank "
+                class="w3-hover-text-green ">w3.css</a></p>
+    </footer>
+    <script type="text/javascript">
+
+        // Check page is changed and reload the application with another language
+        // store url on load
+        let currentPage = location.href;
+
+        // listen for changes
+        setInterval(function()
+        {
+            if (currentPage !== location.href)
+            {
+                // page has changed, set new page as 'current'
+                currentPage = location.href;
+                
+                translationApplication();
+            }
+        }, 500);
+
+        function translationApplication(){
+            var language = location.search;
+            if(language.length != 0){
+                document.getElementById("scene").src = "./src/historical-figures-application.html"  + language; 
+                document.getElementById("fullscreen_link").href = ("./src/historical-figures-application.html" + language); 
+                document.getElementById("vr_link").href = ("./src/historical-figures-application-VR.html" + language);
+            }
+        }
+
+        translationApplication();
+
+        // Translation controller
+
+        TRANSLATION.add(
+            '#header',
+            'Historical Figures',
+            'Figuras Históricas'
+        );
+
+        TRANSLATION.add(
+            '#p1',
+            `Study history is important to knows what happened on the past, to know personalites that marked the epochs, wars, 
+            differents cultures and the pogress of the society. So, this application present a a book of historical figures and 
+            you can to fill the book with the picture that correspond the information text present on the pages to test your knowledge 
+            of historical personalitys.`,
+
+            `Estudar história é importante para saber o que aconteceu no passado, conhecer personalidades que marcaram épocas, 
+            guerras, diferentes culturas e o progresso da sociedade. Portanto, este aplicativo apresenta um livro de figuras 
+            históricas e você pode preencher o livro com a imagem que corresponde ao texto informativo presente nas páginas 
+            para testar seu conhecimento de personalidades históricas.`
+        );
+
+        TRANSLATION.add(
+            '#fullscreen',
+            'Fullscreen',
+            'Tela cheia'
+        );
+
+        TRANSLATION.add(
+            '#ar',
+            'Augmented Reality',
+            'Realidade Aumentada',
+        );
+
+        TRANSLATION.add(
+            '#vr',
+            'Virtual Reality',
+            'Realidade Virtual'
+        );
+
+        TRANSLATION.add(
+            '#warning-fiducial',
+            `You must print a fiducial marker to use Augmented Reality mode (<a href="data/markers/hiro.png" target="_blank">click here</a> to download).`,
+            `É necessário imprimir o marcador fiducial para usar o modo de Realidade Aumentada (<a href="data/markers/hiro.png" target="_blank">
+                Clique aqui</a> par baixar).`
+        );
+
+        TRANSLATION.add(
+            '#warning-hmd-1',
+            `In order to fully experience the VR mode, it is required one HMD (head-mounted display).`,
+            `Para uma experiência completa no modo RV, é necessário usar um HMD (head-mounted display).`
+        );
+
+        TRANSLATION.add(
+            '#warning-vr',
+            ` It may be necessary to accept the installation of <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                        target="_blank">Google Virtual Reality services</a>
+                        on the first access. `,
+            `  Pode ser necessário aceitar a instalação dos <a href="https://play.google.com/store/apps/details?id=com.google.vr.vrcore&hl=en_US&gl=US"
+                                                                        target="_blank">serviços de Realidade Virtual da Google</a>
+                        no primeiro acesso. `
+        );
+
+        TRANSLATION.add(
+            '#warning-hmd-2',
+            `Using mobile devices, press the VR button in bottom right conner before inserting your device in the
+                HMD. A circle will move as you look around and you can teleport to that circle pressing any joystick
+                button. Alternatively, it is also possible to teleport pressisng the spacebar or touching the screen
+                if your device is sensitive to touch.`,
+            `Quando usando um dispositivo móvel, aperte o botão "VR" no canto inferior direito da tela antes de inserir seu dispositivo no HMD.
+                Um círculo irá aparecer no chão quando pressionar algum botão do controle joystick e você irá ser teleportado para o círculo ao soltar o botão.
+                Alternativamente, também é possível se teleportar pressionado a barra de espaço caso esteja usando teclado, tocando na tela se seu dispositivo
+                for sensível ao toque.`
+        );
+
+        TRANSLATION.add(
+            '#more-modes-header',
+            'More modes',
+            'Mais modos'
+        );
+        TRANSLATION.add(
+            '#images-header',
+            'Images in Augmented and Virtual Reality',
+            'Imagens em Realidade Virtual e Aumentada'
+        );
+
+        TRANSLATION.add(
+            '#title',
+            'Historical Figures',
+            'Figuras Históricas'
+        );
+    </script>
+</body>
+
+</html>
