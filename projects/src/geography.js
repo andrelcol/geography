@@ -20,12 +20,12 @@ const ASSETS = {
 
     objects: {
         calcario: {
-            path: 'assets/models/geography/arenitobrabo1.glb',
+            path: 'assets/models/geography/arenito.glb',
             fileSize: 7749,
             draco: decoder // the first model needs to set the draco decoder
         },
         basalto: {
-            path: 'assets/models/geography/basaltobrabo.glb',
+            path: 'assets/models/geography/basalto.glb',
             fileSize: 515,
         },
         granito: {
