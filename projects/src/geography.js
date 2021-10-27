@@ -63,7 +63,7 @@ function init() {
     ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
 
-    light = new THREE.PointLight(0xffffff, 1);
+    light = new THREE.DirectionalLight(0xffffff, 2.5);
     light.position.set(0, 0, 100);
     scene.add(light);
 
