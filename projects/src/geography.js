@@ -20,12 +20,12 @@ const ASSETS = {
 
     objects: {
         calcario: {
-            path: 'assets/models/geography/arenito.glb',
+            path: 'assets/models/geography/calcita.glb',
             fileSize: 7749,
             draco: decoder // the first model needs to set the draco decoder
         },
         basalto: {
-            path: 'assets/models/geography/basalto.glb',
+            path: 'assets/models/geography/basalto2.glb',
             fileSize: 515,
         },
         granito: {
@@ -63,7 +63,7 @@ function init() {
     ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
 
-    light = new THREE.DirectionalLight(0xffffff, 2.5);
+    light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(0, 0, 100);
     scene.add(light);
 
@@ -73,15 +73,15 @@ function init() {
     trackballControls.rotateSpeed = 4;
 
     calcario = ASSETS.objects.calcario;
-    calcario.scale.set(80, 80, 80);
-    calcario.position.set(0, 1, 0);
+    calcario.scale.set(2, 2, 2);
+    calcario.position.set(0, 0, 0);
     calcario.rotation.set(0, -Math.PI / 12, 0);
     calcario.visible = true;
     content.calcario.model = calcario;
     scene.add(calcario);
 
     basalto = ASSETS.objects.basalto;
-    basalto.scale.set(10, 10, 10);
+    basalto.scale.set(2, 2, 2);
     basalto.position.set(0, 0, 0);
     basalto.visible = false;
     content.basalto.model = basalto;
@@ -95,8 +95,8 @@ function init() {
     scene.add(granito)
 
     ardosia = ASSETS.objects.ardosia;
-    ardosia.scale.set(15, 15, 15);
-    ardosia.position.set(0, 2, 0);
+    ardosia.scale.set(50, 50, 50);
+    ardosia.position.set(0, 0, 0);
     ardosia.rotation.set(0, -Math.PI / 6, 0);
     ardosia.visible = false;
     content.ardosia.model = ardosia;
