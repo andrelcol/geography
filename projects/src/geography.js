@@ -74,7 +74,7 @@ function init() {
 
     calcario = ASSETS.objects.calcario;
     calcario.scale.set(2, 2, 2);
-    calcario.position.set(0, 0, 0);
+    calcario.position.set(0, -20, 0);
     calcario.rotation.set(0, -Math.PI / 12, 0);
     calcario.visible = true;
     content.calcario.model = calcario;
@@ -82,7 +82,7 @@ function init() {
 
     basalto = ASSETS.objects.basalto;
     basalto.scale.set(2, 2, 2);
-    basalto.position.set(0, 0, 0);
+    basalto.position.set(0, -20, 0);
     basalto.visible = false;
     content.basalto.model = basalto;
     scene.add(basalto)
@@ -95,7 +95,7 @@ function init() {
     scene.add(granito)
 
     ardosia = ASSETS.objects.ardosia;
-    ardosia.scale.set(50, 50, 50);
+    ardosia.scale.set(20, 20, 20);
     ardosia.position.set(0, 0, 0);
     ardosia.rotation.set(0, -Math.PI / 6, 0);
     ardosia.visible = false;
