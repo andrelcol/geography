@@ -37,7 +37,7 @@ const ASSETS = {
             fileSize: 15957,
         },
         marmore: {
-            path: 'assets/models/geography/marmore.glb',
+            path: 'assets/models/geography/marmore1.glb',
             fileSize: 3.521,
         }
     }
