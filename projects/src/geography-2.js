@@ -8,7 +8,7 @@ const ASSETS = {
     textures: {
         helper: {
             path: 'assets/textures/loader-helper.jpg',
-            fileSize: 2936 + 3892 + 4428 + 8673 + 2072, 
+            fileSize: 2936 + 2031 + 1626 + 1702 + 2072, 
         }
     },
     geometries: {
@@ -26,18 +26,18 @@ const ASSETS = {
         },
         basalto: {
             path: 'assets/models/geography/basalto_low.glb',
-            fileSize: 3892,
+            fileSize: 2031,
         },
         granito: {
-            path: 'assets/models/geography/granito.glb',
-            fileSize: 4428,
+            path: 'assets/models/geography/granito_low.glb',
+            fileSize: 1626,
         },
         ardosia: {
             path: 'assets/models/geography/ardosia_low.glb',
-            fileSize: 8673,
+            fileSize: 1702,
         },
         marmore: {
-            path: 'assets/models/geography/marmore1.glb',
+            path: 'assets/models/geography/marmore_low.glb',
             fileSize: 2072,
         }
     }
