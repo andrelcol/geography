@@ -8,7 +8,7 @@ const ASSETS = {
     textures: {
         helper: {
             path: 'assets/textures/loader-helper.jpg',
-            fileSize: 7749 + 515 + 143 + 3323 + 3521, 
+            fileSize: 12259 + 25574 + 4428 + 15957 + 3521, 
         }
     },
     geometries: {
@@ -21,20 +21,20 @@ const ASSETS = {
     objects: {
         calcario: {
             path: 'assets/models/geography/calcita.glb',
-            fileSize: 7749,
+            fileSize: 12259,
             draco: decoder // the first model needs to set the draco decoder
         },
         basalto: {
             path: 'assets/models/geography/basalto2.glb',
-            fileSize: 515,
+            fileSize: 25574,
         },
         granito: {
             path: 'assets/models/geography/granito.glb',
-            fileSize: 143,
+            fileSize: 4428,
         },
         ardosia: {
             path: 'assets/models/geography/ardosia.glb',
-            fileSize: 3.323,
+            fileSize: 15957,
         },
         marmore: {
             path: 'assets/models/geography/marmore.glb',
@@ -46,7 +46,11 @@ const ASSETS = {
 setRenderer();
 
 var ls = new LoadScreen(renderer,{type:'stepped-circular-fancy-offset', progressColor:'#fff',infoStyle:{padding:'0'}}).onComplete(init).start(ASSETS);
-
+/*
+const ls = new LoadScreen(renderer, { type: 'stepped-circular', progressColor: '#447' })
+    .onComplete(init)
+    .start(ASSETS);
+*/
 function init() {
     initStats();
 
@@ -60,8 +64,8 @@ function init() {
 
     ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
     scene.add(ambientLight);
-
-    light = new THREE.DirectionalLight(0xffffff, 1);
+    console.log('aaaa')
+    light = new THREE.DirectionalLight(0xffffff, 2);
     light.position.set(0, 0, 100);
     scene.add(light);
 
@@ -103,7 +107,6 @@ function init() {
     marmore = ASSETS.objects.marmore;
     marmore.scale.set(15, 15, 15);
     marmore.position.set(0, 2, 0);
-    marmore.rotation.set(0, -Math.PI / 6, 0);
     marmore.visible = false;
     content.marmore.model = marmore;
     scene.add(marmore)
@@ -281,7 +284,26 @@ function changeContent() {
     granito.visible = false;
     ardosia.visible = false;
     marmore.visible = false;
+//    scene.remove(light);
+//    scene.remove(ambientLight)
 
+    console.log(value)
+/*
+    if(value == 'granito') {
+        light = new THREE.DirectionalLight(0xffffff, 2);
+        light.position.set(0, 0, 100);
+        scene.add(light);    
+    }
+    if(value == 'calcario') {
+        ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+        scene.add(ambientLight);
+    }
+    else {
+        light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(0, 0, 100);
+        scene.add(light);    
+    }
+*/
     trackballControls.reset();
 
     trackballControls.update();
