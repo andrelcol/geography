@@ -45,9 +45,7 @@ const ASSETS = {
 
 setRenderer();
 
-const ls = new LoadScreen(renderer, { type: 'stepped-circular', progressColor: '#447' })
-    .onComplete(init)
-    .start(ASSETS);
+var ls = new LoadScreen(renderer,{type:'stepped-circular-fancy-offset', progressColor:'#fff',infoStyle:{padding:'0'}}).onComplete(init).start(ASSETS);
 
 function init() {
     initStats();
