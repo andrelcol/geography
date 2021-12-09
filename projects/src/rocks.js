@@ -7,6 +7,7 @@ let ASSETS;
 
 const decoder = new THREE.DRACOLoader().setDecoderPath('../libs/draco/gltf/');
 
+
 var searchBar = location.search;
         
 if(searchBar.length != 0){
@@ -19,7 +20,6 @@ if(searchBar.length != 0){
 else{                                     
     quality = 0;
 }
-console.log(quality)
 if(quality == 1)
 {
     ASSETS = {
@@ -40,7 +40,7 @@ if(quality == 1)
             calcario: {
                 path: 'assets/models/rocks/limestone.glb',
                 fileSize: 23521,
-                draco: decoder // the first model needs to set the draco decoder
+                //draco: decoder // the first model needs to set the draco decoder
             },
             basalto: {
                 path: 'assets/models/rocks/basalt.glb',
@@ -79,7 +79,7 @@ if(quality == 1)
             calcario: {
                 path: 'assets/models/rocks/limestone_low.glb',
                 fileSize: 1627,
-                draco: decoder // the first model needs to set the draco decoder
+                //draco: decoder // the first model needs to set the draco decoder
             },
             basalto: {
                 path: 'assets/models/rocks/basalt_low.glb',

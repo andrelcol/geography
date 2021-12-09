@@ -56,8 +56,9 @@
             display: none;
             max-height: 60vh;
             padding: 5px;
-            color: #736767;
+            color: #000000;
             overflow-y: scroll;
+            font-weight:900;
         }
 
         #panel select {
@@ -105,12 +106,13 @@
             }
 
             #panel-title {
+                background: url(../img/Rocks/title-background.jpg);
                 margin-top: 0;
                 margin-bottom: 0;
                 padding: 7px;
                 font-family: sans-serif;
                 text-align: center;
-                color: #efefef;
+                color: #805a14;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
@@ -124,6 +126,7 @@
             }
 
             #panel-content {
+                background: url(../img/Rocks/content-background.jpg) transparent ; 
                 display: block;
                 /*Mais que 90vh corta o final do conteudo por algum motivo */
                 max-height: 90vh;
@@ -138,6 +141,11 @@
         <h3 id="panel-title" onclick="toggleContent()">Tipos de Rocha</h3>
 
         <div id="panel-content">
+
+            <input type="checkbox" id="toggleHighlight" name="toggleHighlight" value="toggleHighlight" checked
+                onchange="changeQuality()">
+            <label id="label-highlight" for="toggleHighlight"> Toggle Highlight</label>
+
             <select id="selector" onchange="changeContent()">
                 <!-- <option value="cardio" selected>Cardiovascular disease</option> -->
                 <option id="opt-basalto" value="basalto" selected>Basalt</option>
@@ -198,6 +206,21 @@
                 content.style.display = 'none';
             }
             else content.style.display = 'block';
+        }
+        function changeQuality() {
+           // TRANSLATION.redirectQuality('projects/src/rocks-application.html', '', true, '?quality=1');
+           console.log(TRANSLATION.currentlang)
+           function redirectQuality(path, hash, newTab, quality) {
+                const prevPath = window.location.origin === "https://avrgroup.github.io" ? '/vrtools/' : '/';
+                if (!hash) {
+                    hash = '';
+                }
+                const newURL = window.location.origin + prevPath + path + '?lang=' + TRANSLATION.currentlang + hash + quality;
+                if (newTab) window.open(newURL, '_blank');
+                else window.location.href = newURL;
+            }
+            
+            redirectQuality('/vrtools/projects/src/rocks-application.html', '', false, '&quality=1');
         }
     </script>
 
