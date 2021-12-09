@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title id="title1">Platonic Solids - AR</title>
+        <meta charset="UTF-8">
+        <!-- Tag that adapt the dimensions(width, height) of interface for mobile devices:
+            https://developer.mozilla.org/pt-BR/docs/Mozilla/Mobile/Viewport_meta_tag
+        -->
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <script src="../../js/translation.js"></script>
+
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+            } 
+
+            a {
+                color: var(--color-blue);
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            #newWindow {
+				display: block;
+				position: absolute;
+				bottom: 0.3em;
+				left: 0.4em;
+				color: #fff;
+			}
+        </style>
+
+        <!-- Libraries of configuration (Default) -->
+        <script type="text/javascript" charset="UTF-8" src="../libs/three/three.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../libs/util/Stats.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../libs/util/dat.gui.js"></script>
+        <link rel="stylesheet" href="../libs/util/dat.gui.css">
+
+        <!-- Library of Augmented Reality that uses Three.js -->
+        <script type="text/javascript" charset="UTF-8" src="../libs/MarkerTracking--LocationBasedAR/THREE/ar.js"></script>
+        <script>THREEx.ArToolkitContext.baseURL = "../"</script>  <!-- Define o local do contexto -->
+        
+        <!-- There are many useful functionss -->
+        <script type="text/javascript" charset="UTF-8" src="../libs/util/util.js"></script>
+
+        <!-- Library of example -->
+        <script type="text/javascript" charset="UTF-8" src="platonic-solids-AR.js"></script>
+
+    </head>
+
+    <body>
+        <div id="webgl-output" ></div>
+        <script type="text/javascript" charset="UTF-8"> 
+            var language = location.search;
+            if (language.length != 0) {
+                let aux = "?lang=";
+                language = language.substring(aux.length, language.length);
+                switch (language) {
+                    case "en-US":
+                        main("en-US")
+                        break;
+                    case "pt-BR":
+                        main("pt-BR");
+                        break;
+                }
+            }
+            else {
+                language = "en-US";
+                main(language);
+            }
+        </script>
+        <script>
+            TRANSLATION.add(
+                '#title1',
+                'Platonic Solids - AR',
+                'Sólidos Platônicos - RA'
+        );
+        </script>
+    </body>
+</html>
