@@ -18,7 +18,7 @@ import {
     Texture,
     TextureLoader,
     CanvasTexture,
-} from '../libs/vr/three.module-orbi.js';
+} from './three/build/three.module.js';
 
 // propertys
 let currentOrbit, isFusing, config;
@@ -144,6 +144,7 @@ class Orbi extends Object3D {
                 );
                 cursor.name = "orbi-cursor";
                 cursor.position.copy(config.cursor.position);
+                cursor.position.z = -config.orbits[currentOrbit] + 0.1;
                 cursor.renderOrder = 5000;
             }
             camera.add(cursor);
@@ -161,6 +162,7 @@ class Orbi extends Object3D {
         messageGroup = new Group();
         messageGroup.name = "message-wrapper"
         messageGroup.position.y = (config.button.size.y + config.gap.y) * config.display.x * 0.5 + 0.05;
+        messageGroup.position.z = -config.orbits[currentOrbit];
         messageGroup.visible = false;
         uiGroup.add(messageGroup);
 
@@ -175,7 +177,6 @@ class Orbi extends Object3D {
         });
         messageBg = new Mesh(messageBgGeo, messageBgMat);
         messageBg.name = "background";
-        messageBg.position.z = -config.orbits[currentOrbit];
         messageGroup.add(messageBg);
 
         textGroup = new Group();
@@ -210,6 +211,7 @@ class Orbi extends Object3D {
                     const messageMat = new MeshBasicMaterial({ color: config.message.color });
                     message = new Mesh(msgGeo, messageMat);
                     messageGroup.add(message);
+                    message.position.z = 0.001;
 
                     const textGeo = new TextBufferGeometry('', { font });
                     const textMat = new MeshBasicMaterial({ color: config.text.color });
@@ -226,7 +228,9 @@ class Orbi extends Object3D {
 
         raycaster = new Raycaster(new Vector3(), new Vector3(0, 0, -1));
         raycaster.near = config.raycaster.near;
-        raycaster.far = config.raycaster.far;
+        // raycaster.far = config.raycaster.far;
+        raycaster.far = config.orbits[currentOrbit] + 0.5;
+        
 
         rayClock = new Clock(true);
         fusingClock = new Clock(false);
@@ -300,7 +304,6 @@ class Orbi extends Object3D {
 
         message.position.x = centerOffset;
         message.position.y = -0.04 / 2;
-        message.position.z = -config.orbits[currentOrbit] + 0.001;
 
         messageBg.scale.x = centerOffset * 2.5;
 
